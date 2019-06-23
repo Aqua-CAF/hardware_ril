@@ -37,8 +37,12 @@ ifeq ($(SIM_COUNT), 2)
     LOCAL_CFLAGS += -DANDROID_SIM_COUNT_2
 endif
 
-ifneq ($(DISABLE_RILD_OEM_HOOK),)
+ifneq ($(DISABLE_RILD_OEM_HOOK), false)
     LOCAL_CFLAGS += -DOEM_HOOK_DISABLED
+endif
+
+ifneq ($(TARGET_USES_OLD_MNC_FORMAT),)
+    LOCAL_CFLAGS += -DOLD_MNC_FORMAT
 endif
 
 LOCAL_C_INCLUDES += external/nanopb-c
